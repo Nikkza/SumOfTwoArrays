@@ -8,8 +8,8 @@ namespace SumOfTwoArrays
 {
     interface ILogic
     {
-        List<int> FirstArray(List<int> array);
-        List<int> SecondArray(List<int> array);
+        List<int> FirstList(List<int> list);
+        List<int> SecondList(List<int> list);
         List<int> CreateLIst(string value);
         List<int> SumValueFromLists(List<int> listNew);
     }

@@ -6,8 +6,8 @@ namespace SumOfTwoArrays
 {
     public class Logic : ILogic
     {
-        public List<int> FirstArray(List<int> array) => array.Take(array.Count / 2).ToList();
-        public List<int> SecondArray(List<int> array) => array.Skip(array.Count / 2).ToList();
+        public List<int> FirstList(List<int> list) => list.Take(list.Count / 2).ToList();
+        public List<int> SecondList(List<int> list) => list.Skip(list.Count / 2).ToList();
 
         public List<int> CreateLIst(string value)
         {
@@ -35,8 +35,8 @@ namespace SumOfTwoArrays
             int index = 0;
             List<int> listSum = new List<int>();
 
-            List<int> firstList = FirstArray(listNew);
-            List<int> secondList = SecondArray(listNew);
+            List<int> firstList = FirstList(listNew);
+            List<int> secondList = SecondList(listNew);
 
             int cntArrry1 = firstList.Count();
             int cntArrry2 = secondList.Count();
@@ -68,8 +68,8 @@ namespace SumOfTwoArrays
                     }
                     index++;
                 }
-                firstList = FirstArray(listSum);
-                secondList = SecondArray(listSum);
+                firstList = FirstList(listSum);
+                secondList = SecondList(listSum);
 
                 cntArrry1 = firstList.Count();
                 cntArrry2 = secondList.Count();
