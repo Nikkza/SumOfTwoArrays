@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SumOfTwoArrays
 {
@@ -10,21 +8,47 @@ namespace SumOfTwoArrays
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(string.Join(",", NewArray()));
-            Console.ReadLine();
+            while (true)
+            {
+                string value = Console.ReadLine();
+                List<int> newList = CreateLIst(value);
+                if (newList.Count() > 0)
+                    Console.WriteLine($"SUM: {string.Join(",", newList)}");
+            }
         }
+
         static List<int> FirstArray(List<int> array) => array.Take(array.Count / 2).ToList();
         static List<int> SecondArray(List<int> array) => array.Skip(array.Count / 2).ToList();
 
-        static List<int> NewArray()
+        static List<int> CreateLIst(string value)
+        {
+            List<int> listOfNumbers = new List<int>();
+            if (int.TryParse(value, out int numbers))
+            {
+                if (numbers > 1)
+                {
+                    Random random = new Random();
+                    for (int i = 0; i < numbers; i++)
+                        listOfNumbers.Add(random.Next(1, 9));
+                }
+                else
+                    Console.WriteLine("Number must be greater than 1");
+            }
+            else
+                Console.WriteLine("You must type in a number from 1 - 9");
+
+            return listOfNumbers;
+        }
+
+        static List<int> SumValueFromLists(List<int> listNew)
         {
             int sum = 0;
             int index = 0;
             List<int> arraySum = new List<int>();
-            var arrayNew = new List<int>() { 1, 2, 1, 2 };
 
-            List<int> firstArray = FirstArray(arrayNew);
-            List<int> secondArray = SecondArray(arrayNew);
+
+            List<int> firstArray = FirstArray(listNew);
+            List<int> secondArray = SecondArray(listNew);
 
             int cntArrry1 = firstArray.Count();
             int cntArrry2 = secondArray.Count();
