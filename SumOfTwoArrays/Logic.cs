@@ -51,14 +51,9 @@ namespace SumOfTwoArrays
 
                 for (int i = 0; i < cntArrry2; i++)
                 {
-                    if (!(cntArrry2 - 1 == index))
+                    if (cntArrry1 > index)
                     {
                         sum = secondList[i] + firstList[index];
-                        listSum.Add(sum);
-                    }
-                    else if ((cntArrry2 == 1) && (cntArrry1 == 1))
-                    {
-                        sum = secondList[0] + firstList[0];
                         listSum.Add(sum);
                     }
                     else
