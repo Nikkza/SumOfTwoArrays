@@ -10,7 +10,7 @@ namespace SumOfTwoArrays
     {
         List<int> FirstList(List<int> list);
         List<int> SecondList(List<int> list);
-        (List<int>,int counter) CreateLIst(List<int> value,int counter);
+        (List<int> list,int count) CreateLIst(string value);
         List<int> SumValueFromLists(List<int> listNew,int countRoounds);
     }
 }

@@ -6,15 +6,31 @@ namespace SumOfTwoArrays
 {
     public class Logic : ILogic
     {
-        public (List<int>, int) CreateLIst(List<int> value, int counter)
+        public (List<int> list, int count) CreateLIst(string value)
         {
-            var convertInt = Convert.ToInt32(string.Join("", value));
-            List<int> listOfNumbers = new List<int>();
-            Random random = new Random();
-            for (int i = 0; i < convertInt; i++)
-                listOfNumbers.Add(random.Next(1, 9));
+            List<int> list = new List<int>();
+            int count = 0;
+            var splitValue = value.Split(',');
+            if (splitValue.Count() == 2)
+            {
+                if ((int.TryParse(splitValue[0], out int number) && (int.TryParse(splitValue[1], out int counter))))
+                {
+                    List<int> listOfNumbers = new List<int>();
+                    Random random = new Random();
+                    for (int i = 0; i < number; i++)
+                    {
+                        listOfNumbers.Add(random.Next(1, 9));
+                    }
+                    count = counter;
+                    list = listOfNumbers;
+                }
+                else
+                    Console.WriteLine("Value must be a number from 1 - 9");
 
-            return (listOfNumbers, counter);
+            }else
+                Console.WriteLine("Value can not be empty input ex: 10,2");
+
+            return (list, count);
         }
 
         public List<int> FirstList(List<int> list) => list.Take(list.Count / 2).Reverse().ToList();
