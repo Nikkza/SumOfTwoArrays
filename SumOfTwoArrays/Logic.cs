@@ -26,10 +26,9 @@ namespace SumOfTwoArrays
                 }
                 else
                     Console.WriteLine("Value must be a number from 1 - 9");
-
             }
             else
-                Console.WriteLine("Value can not be empty input ex: 10,2");
+                Console.WriteLine("Value can't be empty input or you must write like this ex 8,2");
 
             return (list, count);
         }
@@ -79,7 +78,6 @@ namespace SumOfTwoArrays
                     countWhileLoop++;
                 }
             }
-
             return listSum;
         }
     }
