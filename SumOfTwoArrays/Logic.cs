@@ -27,14 +27,20 @@ namespace SumOfTwoArrays
                 else
                     Console.WriteLine("Value must be a number from 1 - 9");
 
-            }else
+            }
+            else
                 Console.WriteLine("Value can not be empty input ex: 10,2");
 
             return (list, count);
         }
 
-        public List<int> FirstList(List<int> list) => list.Take(list.Count / 2).Reverse().ToList();
-        public List<int> SecondList(List<int> list) => list.Skip(list.Count / 2).Reverse().ToList();
+
+        public (List<int> firstList, List<int> secondList) Split(List<int> list)
+        {
+            var firstList = list.Take(list.Count / 2).Reverse().ToList();
+            var secondList = list.Skip(list.Count / 2).Reverse().ToList();
+            return (firstList, secondList);
+        }
 
         public List<int> SumValueFromLists(List<int> listNew, int number)
         {
@@ -43,8 +49,8 @@ namespace SumOfTwoArrays
             {
                 int sum = 0;
                 int countWhileLoop = 0;
-                List<int> firstList = FirstList(listNew);
-                List<int> secondList = SecondList(listNew);
+                var (firstList, secondList) = Split(listNew);
+
                 int cntArrry1 = firstList.Count();
                 int cntArrry2 = secondList.Count();
 
@@ -66,8 +72,7 @@ namespace SumOfTwoArrays
                             listSum.Add(sum);
                         }
                     }
-                    firstList = FirstList(listSum);
-                    secondList = SecondList(listSum);
+                    (firstList, secondList) = Split(listSum);
 
                     cntArrry1 = firstList.Count();
                     cntArrry2 = secondList.Count();
