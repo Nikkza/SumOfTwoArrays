@@ -6,69 +6,59 @@ namespace SumOfTwoArrays
 {
     public class Logic : ILogic
     {
-        public List<int> FirstList(List<int> list) => list.Take(list.Count / 2).ToList();
-        public List<int> SecondList(List<int> list) => list.Skip(list.Count / 2).ToList();
-
-        public List<int> CreateLIst(string value)
+        public (List<int>, int counter) CreateLIst(List<int> value, int counter)
         {
+            var convertInt = Convert.ToInt32(string.Join("", value));
             List<int> listOfNumbers = new List<int>();
-            if (int.TryParse(value, out int numbers))
-            {
-                if (numbers > 1)
-                {
-                    Random random = new Random();
-                    for (int i = 0; i < numbers; i++)
-                        listOfNumbers.Add(random.Next(1, 9));
-                }
-                else
-                    Console.WriteLine("Number must be greater than 1");
-            }
-            else
-                Console.WriteLine("You must type in a number from 1 - 9");
+            Random random = new Random();
+            for (int i = 0; i < convertInt; i++)
+                listOfNumbers.Add(random.Next(1, 9));
 
-            return listOfNumbers;
+            return (listOfNumbers, counter);
         }
 
-        public List<int> SumValueFromLists(List<int> listNew)
+        public List<int> FirstList(List<int> list) => list.Take(list.Count / 2).Reverse().ToList();
+        public List<int> SecondList(List<int> list) => list.Skip(list.Count / 2).Reverse().ToList();
+
+        public List<int> SumValueFromLists(List<int> listNew, int number)
         {
-            int sum = 0;
-            int index = 0;
             List<int> listSum = new List<int>();
-
-            List<int> firstList = FirstList(listNew);
-            List<int> secondList = SecondList(listNew);
-
-            int cntArrry1 = firstList.Count();
-            int cntArrry2 = secondList.Count();
-
-            while ((cntArrry1 >= 1) && (cntArrry2 >= 1))
+            if (number != 0)
             {
-                if (listSum.Count() != 0)
-                {
-                    listSum.Clear();
-                    index = 0;
-                }
+                int sum = 0;
+                int countWhileLoop = 0;
+                List<int> firstList = FirstList(listNew);
+                List<int> secondList = SecondList(listNew);
+                int cntArrry1 = firstList.Count();
+                int cntArrry2 = secondList.Count();
 
-                for (int i = 0; i < cntArrry2; i++)
+                while ((countWhileLoop < number))
                 {
-                    if (cntArrry1 > index)
-                    {
-                        sum = secondList[i] + firstList[index];
-                        listSum.Add(sum);
-                    }
-                    else
-                    {
-                        sum = secondList[i];
-                        listSum.Add(sum);
-                    }
-                    index++;
-                }
-                firstList = FirstList(listSum);
-                secondList = SecondList(listSum);
+                    if (listSum.Count() != 0)
+                        listSum.Clear();
 
-                cntArrry1 = firstList.Count();
-                cntArrry2 = secondList.Count();
+                    for (int i = 0; i < cntArrry2; i++)
+                    {
+                        if (cntArrry1 > i)
+                        {
+                            sum = secondList[i] + firstList[i];
+                            listSum.Add(sum);
+                        }
+                        else
+                        {
+                            sum = secondList[i];
+                            listSum.Add(sum);
+                        }
+                    }
+                    firstList = FirstList(listSum);
+                    secondList = SecondList(listSum);
+
+                    cntArrry1 = firstList.Count();
+                    cntArrry2 = secondList.Count();
+                    countWhileLoop++;
+                }
             }
+
             return listSum;
         }
     }
