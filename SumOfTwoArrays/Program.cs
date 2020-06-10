@@ -18,7 +18,7 @@ namespace SumOfTwoArrays
                 {
                     intList = listItem.ToString().Select(x => Convert.ToInt32(x.ToString())).ToList();
                     var k = _logic.CreateLIst(intList, numberOfLoops);
-                    Console.WriteLine($"SUM: {string.Join(",", _logic.SumValueFromLists(k.Item1, k.counter))}");
+                    Console.WriteLine($"SUM: {string.Join(",", _logic.SumValueFromLists(k.Item1, k.Item2))}");
                 }
             }
         }

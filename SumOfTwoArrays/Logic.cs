@@ -6,7 +6,7 @@ namespace SumOfTwoArrays
 {
     public class Logic : ILogic
     {
-        public (List<int>, int counter) CreateLIst(List<int> value, int counter)
+        public (List<int>, int) CreateLIst(List<int> value, int counter)
         {
             var convertInt = Convert.ToInt32(string.Join("", value));
             List<int> listOfNumbers = new List<int>();
