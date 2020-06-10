@@ -10,25 +10,32 @@ namespace SumOfTwoArrays
         {
             List<int> list = new List<int>();
             int count = 0;
+            int number = 0;
+            int counter = 0;
             var splitValue = value.Split(',');
             if (splitValue.Count() == 2)
             {
-                if ((int.TryParse(splitValue[0], out int number) && (int.TryParse(splitValue[1], out int counter))))
+                try
                 {
-                    List<int> listOfNumbers = new List<int>();
-                    Random random = new Random();
-                    for (int i = 0; i < number; i++)
-                    {
-                        listOfNumbers.Add(random.Next(1, 9));
-                    }
-                    count = counter;
-                    list = listOfNumbers;
+                    number = int.Parse(splitValue[0]);
+                    counter = int.Parse(splitValue[1]);
                 }
-                else
+                catch (Exception)
+                {
                     Console.WriteLine("Value must be a number from 1 - 9");
+                }
+
+                List<int> listOfNumbers = new List<int>();
+                Random random = new Random();
+                for (int i = 0; i < number; i++)
+                {
+                    listOfNumbers.Add(random.Next(1, 9));
+                }
+                count = counter;
+                list = listOfNumbers;
             }
             else
-                Console.WriteLine("Value can't be empty input or you must write like this ex 8,2");
+                Console.WriteLine("Value can't be empty you must write like this ex 8,2");
 
             return (list, count);
         }
@@ -44,41 +51,40 @@ namespace SumOfTwoArrays
         public List<int> SumValueFromLists(List<int> listNew, int number)
         {
             List<int> listSum = new List<int>();
+            List<int> firstList = new List<int>();
+            List<int> secondList = new List<int>();
+
             if (number != 0)
             {
-                int sum = 0;
                 int countWhileLoop = 0;
-                var (firstList, secondList) = Split(listNew);
+                (firstList, secondList) = Split(listNew);
 
                 int cntArrry1 = firstList.Count();
                 int cntArrry2 = secondList.Count();
 
                 while ((countWhileLoop < number))
                 {
-                    if (listSum.Count() != 0)
-                        listSum.Clear();
-
                     for (int i = 0; i < cntArrry2; i++)
                     {
                         if (cntArrry1 > i)
-                        {
-                            sum = secondList[i] + firstList[i];
-                            listSum.Add(sum);
-                        }
+                            secondList[i] += firstList[i];
                         else
                         {
-                            sum = secondList[i];
-                            listSum.Add(sum);
+                            int temp = 0;
+                            secondList[i] += temp;
                         }
                     }
-                    (firstList, secondList) = Split(listSum);
-
-                    cntArrry1 = firstList.Count();
-                    cntArrry2 = secondList.Count();
                     countWhileLoop++;
+                    if (countWhileLoop < number)
+                    {
+                        (firstList, secondList) = Split(secondList);
+
+                        cntArrry1 = firstList.Count();
+                        cntArrry2 = secondList.Count();
+                    }
                 }
             }
-            return listSum;
+            return secondList;
         }
     }
 }
